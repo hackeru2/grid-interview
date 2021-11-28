@@ -5,8 +5,8 @@ import pokemon from './data_b';
 
 const Trailer = ({ data }) => (
   <a href={data.url}
-     target="_blank"
-     rel="noopener noreferrer">
+    target="_blank"
+    rel="noopener noreferrer">
     trailer...
   </a>
 );
@@ -26,11 +26,11 @@ const moviesConfig = [
     title: 'rating',
     field: 'imdbRating',
   },
- // {
- //   title: 'trailer',
- //   field: 'Trailer',
- //   component: Trailer
- // }
+  {
+    title: 'trailer',
+    field: 'Trailer',
+    component: Trailer
+  }
 ];
 
 const pokemonConfig = [
@@ -38,11 +38,11 @@ const pokemonConfig = [
     title: 'pokedex #',
     field: 'number'
   },
-  // {
-  //   title: 'name',
-  //   field: 'name',
-  //   component: PokemonName
-  // },
+  {
+    title: 'name',
+    field: 'name',
+    component: PokemonName
+  },
 ];
 
 const App = () => (

@@ -1,24 +1,29 @@
 import React from 'react';
 
-const Grid = ({ config, data }) => (
-  <table>
+function dynamicComponent(row, header) {
+  const DynamicComp = header.component;
+  return (<td key={header.title}>{DynamicComp ? <DynamicComp data={row[header.field]} /> :
+    row[header.field]}</td>)
+}
+
+const Grid = ({ config, data }) => {
+
+  const objValuesConfig = Object.values(config)
+  const renderTableHeaders = header => <th key={header.title}>{header.title}</th>
+  const renderTableCells = (row, header) => dynamicComponent(row, header)
+
+  return (<table>
     <thead>
-    <tr>
-      <th>Col 1</th>
-      <th>Col 2</th>
-    </tr>
+      <tr>
+        {objValuesConfig.map(header => renderTableHeaders(header))}
+      </tr>
     </thead>
     <tbody>
-    <tr>
-      <td>Data 1</td>
-      <td>Data 2</td>
-    </tr>
-    <tr>
-      <td>Data 1</td>
-      <td>Data 2</td>
-    </tr>
+      {data.map((row, i) => <tr key={i} >
+        {objValuesConfig.map(header => renderTableCells(row, header))}
+      </tr>)}
     </tbody>
-  </table>
-);
+  </table>)
+}
 
 export default Grid;
